@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common::parse_markdown_header(${articleVO.title})"></head>
+<!--<body  background="image/nanke.jpg" style="background-size: cover;">-->
+<body  >
+<style>
+    #fix_div{
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+    }
+    img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+    @media screen and (max-width:600px){
+        .left_div{display:none;}
+    }
+</style>
+<div th:include="common::favo_nav"></div>
+<!--<div th:include="music::play_music(name=${articleVO.music})" id="fix_div"></div>-->
+<!--<img th:src="@{${articleVO.bannerImage}}" width="100%">-->
+<div class="panel panel-primary" >
+    <div class="panel-heading"><h3>古调自爱</h3></div>
+    <!--    <div class="panel-body"  style="background:  #f6f1f7">-->
+    <div class="panel-body">
+        <table style="width: 100%">
+            <td style="width: 10%;vertical-align: top" class="left_div">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation"><a href="/favorite_00">目录</a></li>
+                    <li role="presentation"><a href="/favo_01_jhzzb">简化字总表</a></li>
+                    <li role="presentation"><a href="/favo_02_zhxy">中华新韵</a></li>
+                    <li role="presentation"><a href="/favo_03_xnsd">一些虚拟设定</a></li>
+                    <li role="presentation"><a href="/favo_04_sbtj">书本统计</a></li>
+<!--                    <li role="presentation" class="dropdown">-->
+<!--                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">-->
+<!--                            2019-12<span class="caret"></span>-->
+<!--                        </a>-->
+<!--                        <ul class="dropdown-menu">-->
+<!--                            <li><a href="/reading_201912_01">中国哲学简史</a></li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
+                </ul>
+            </td>
+            <td style="width: auto"><div id="result" ></div></td>
+        </table>
+    </div>
+    <div class="panel-footer">
+        <table style="width: 100%">
+            <tr>
+                <td style="width: 50%;text-align: left">
+                    <span th:if="${not #strings.isEmpty(articleVO.preSectionUrl)}">
+                         <a th:href="${articleVO.preSectionUrl}">上一篇</a>
+                    </span>
+                </td>
+                <td style="width: 50%;text-align: right">
+                     <span th:if="${not #strings.isEmpty(articleVO.nextSectionUrl)}">
+                    <a th:href="${articleVO.nextSectionUrl}">下一篇</a>
+                     </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+<div th:include="common::common_footer"></div>
+
+<script th:inline="javascript">
+    $(document).ready( convert() );
+    function convert(){
+        // console.log("convert")
+        htmlobj=$.ajax({url:[[${articleVO.sourceFile}]],async:false});
+        // console.log( htmlobj.responseText);
+        converter = new showdown.Converter({tables: true});
+        // converter.setOption('tables', true);
+        html = converter.makeHtml(htmlobj.responseText);
+        //给表格添加样式
+        html = html.replace(/<table>/g,"<table class='table table-striped'>" )
+        //  html = html.replace("<table>","<table class='table table-striped'>" )
+        //   console.log( html);
+        document.getElementById("result").innerHTML = html;
+    }
+</script>
+
+</div>
+</body>
+</html>

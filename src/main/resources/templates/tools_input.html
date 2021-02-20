@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="common::common_header(${input.functionName})"></head>
+
+
+<body>
+<div th:include="common::tool_nav"></div>
+<div th:if="${not #strings.isEmpty(input.referUrl)}">
+    <p><a th:href="${input.referUrl}" th:text="${input.referSlogan}"></a></p>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading"><h3 th:text="${input.functionName}"></h3></div>
+    <form action="#" th:action="@{${input.functionValue}}" th:object="${input}" method="post">
+        <div class="panel-body">
+            <div th:if="${not #strings.isEmpty(input.functionDesc)}">
+                <p style="white-space: pre-wrap;" th:text="${input.functionDesc}"></p>
+                <br/>
+            </div>
+
+            <div th:if="${not #strings.isEmpty(input.firstParamName)}">
+                <p style="white-space: pre-wrap;" th:text="*{firstParamName}"></p>
+                <textarea type="text" th:field="*{firstParamValue}"></textarea>
+                <br/>
+            </div>
+            <div th:if="${not #strings.isEmpty(input.secondParamName)}">
+                <p style="white-space: pre-wrap;" th:text="*{secondParamName}"></p>
+                <textarea type="text" th:field="*{secondParamValue}"></textarea>
+                <br/>
+            </div>
+            <div th:if="${not #strings.isEmpty(input.thirdParamName)}">
+                <p style="white-space: pre-wrap;" th:text="*{thirdParamName}"></p>
+                <textarea type="text" th:field="*{thirdParamValue}"></textarea>
+                <br/>
+            </div>
+            <div th:if="${not #strings.isEmpty(input.forthParamName)}">
+                <p style="white-space: pre-wrap;" th:text="*{forthParamName}"></p>
+                <textarea type="text" th:field="*{forthParamValue}"></textarea>
+                <br/>
+            </div>
+            <div th:if="${not #strings.isEmpty(input.fifthParamName)}">
+                <p style="white-space: pre-wrap;" th:text="*{fifthParamName}"></p>
+                <textarea type="text" th:field="*{fifthParamValue}"></textarea>
+                <br/>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button type="submit" class="btn btn-success" th:text="Submit"></button>
+            <button type="reset"  class="btn btn-danger" th:text="Reset"></button>
+        </div>
+    </form>
+</div>
+<footer th:replace="common::common_footer"></footer>
+</body>
+
+</html>

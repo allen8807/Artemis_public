@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common::parse_markdown_header(${articleVO.title})"></head>
+<!--<body  background="image/nanke.jpg" style="background-size: cover;">-->
+<body  >
+<style>
+    #fix_div{
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+    }
+    img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+    @media screen and (max-width:600px){
+        .left_div{display:none;}
+    }
+</style>
+<div th:include="common::reading_nav"></div>
+<!--<div th:include="music::play_music(name=${articleVO.music})" id="fix_div"></div>-->
+<!--<img th:src="@{${articleVO.bannerImage}}" width="100%">-->
+<div class="panel panel-primary" >
+    <div class="panel-heading"><h3>纸上得来</h3></div>
+    <!--    <div class="panel-body"  style="background:  #f6f1f7">-->
+    <div class="panel-body">
+        <table style="width: 100%">
+            <td style="width: 10%;vertical-align: top" class="left_div">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation"><a href="/reading_00">目录</a></li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            2020-03<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/reading_202003_01_mlxsj">赫胥黎-美丽新世界</a></li>
+                            <li><a href="/reading_202003_02_whzz">勒庞-乌合之众</a></li>
+                            <li><a href="/reading_202003_03_wm">扎米亚金-我们</a></li>
+                            <li><a href="/reading_202003_04_rjsg">太宰治-人间失格</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            2020-02<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/reading_202002_01_hlm">曹雪芹-红楼梦</a></li>
+                            <li><a href="/reading_202002_02_wedh">梭罗-瓦尔登湖</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            2020-01<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/reading_202001_01_jjxyl7hg">曼昆-经济学原理:宏观经济学分册</a></li>
+                            <li><a href="/reading_202001_02_rldgs">房龙-人类的故事</a></li>
+                            <li><a href="/reading_202001_04_tl_xfzxs">梯利-西方哲学史-上册</a></li>
+                            <li><a href="/reading_202001_04_1984">奥威尔-1984</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            2019-12<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/reading_201912_01_zgzxjs">冯友兰-中国哲学简史</a></li>
+                            <li><a href="/reading_201912_02_jjxyl7wg">曼昆-经济学原理:微观经济学分册</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td style="width: auto"><div id="result" ></div></td>
+        </table>
+    </div>
+    <div class="panel-footer">
+        <table style="width: 100%">
+            <tr>
+                <td style="width: 50%;text-align: left">
+                    <span th:if="${not #strings.isEmpty(articleVO.preSectionUrl)}">
+                         <a th:href="${articleVO.preSectionUrl}">上一篇</a>
+                    </span>
+                </td>
+                <td style="width: 50%;text-align: right">
+                     <span th:if="${not #strings.isEmpty(articleVO.nextSectionUrl)}">
+                    <a th:href="${articleVO.nextSectionUrl}">下一篇</a>
+                     </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+<div th:include="common::common_footer"></div>
+
+<script th:inline="javascript">
+    $(document).ready( convert() );
+    function convert(){
+        // console.log("convert")
+        htmlobj=$.ajax({url:[[${articleVO.sourceFile}]],async:false});
+        // console.log( htmlobj.responseText);
+        converter = new showdown.Converter({tables: true});
+        // converter.setOption('tables', true);
+        html = converter.makeHtml(htmlobj.responseText);
+        //给表格添加样式
+        html = html.replace(/<table>/g,"<table class='table table-striped'>" )
+        //  html = html.replace("<table>","<table class='table table-striped'>" )
+        //   console.log( html);
+        document.getElementById("result").innerHTML = html;
+    }
+</script>
+
+</div>
+</body>
+</html>

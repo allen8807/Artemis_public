@@ -1,0 +1,145 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common::parse_markdown_header(${articleVO.title})"></head>
+<!--<body  background="image/nanke.jpg" style="background-size: cover;">-->
+<body  >
+<style>
+    #fix_div{
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+    }
+    img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+    @media screen and (max-width:600px){
+        .left_div{display:none;}
+    }
+</style>
+<div th:include="common::sixia_nav"></div>
+<!--<div th:include="music::play_music(name=${articleVO.music})" id="fix_div"></div>-->
+<!--<img th:src="@{${articleVO.bannerImage}}" width="100%">-->
+<div class="panel panel-primary" >
+    <div class="panel-heading"><h3>长夏闻浅歌</h3></div>
+    <!--    <div class="panel-body"  style="background:  #f6f1f7">-->
+    <div class="panel-body" style="background:url('image/shuyuanji/shuyuanji_back.jpg');background-size: contain">
+        <table style="width: 100%">
+            <td style="width: 10%;vertical-align: top" class="left_div">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation"><a href="/sixia_00">最司长夏</a></li>
+                    <li role="presentation"><a href="/sixia_shuyuanji_00">漱愿记</a></li>
+                    <li role="presentation"><a href="/sixia_song_00_content">长夏闻浅歌</a></li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            2020Q2<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/sixia_song_20200606_c_hd">海底</a></li>
+                            <li><a href="/sixia_song_20200523_oc_jhrm">江湖入梦</a></li>
+                            <li><a href="/sixia_song_20200523_o_sczx">山茶照雪</a></li>
+                            <li><a href="/sixia_song_20200505_c_gswx">歌虽无形（中日双版）</a></li>
+                            <li><a href="/sixia_song_20200501_o_jxy">江心月</a></li>
+                            <li><a href="/sixia_song_20200417_o_ss">双双</a></li>
+                            <li><a href="/sixia_song_20200409_c_fhcb">繁华唱遍</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            2020Q1<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/sixia_song_20200329_c_as">爱殇</a></li>
+                            <li><a href="/sixia_song_20200314_c_gx">归寻</a></li>
+                            <li><a href="/sixia_song_20200306_c_ssd">水上灯</a></li>
+                            <li><a href="/sixia_song_20200228_c_cmxsh">吹灭小山河</a></li>
+                            <li><a href="/sixia_song_20200223_c_hspdz">横竖撇点折</a></li>
+                            <li><a href="/sixia_song_20200215_oc_dgda">大国大爱</a></li>
+                            <li><a href="/sixia_song_20200214_c_swzzdqz">是我在做多情种</a></li>
+                            <li><a href="/sixia_song_20200207_c_cl">赤伶</a></li>
+                            <li><a href="/sixia_song_20200130_c_wgsx">万古生香</a></li>
+                            <li><a href="/sixia_song_20200124_c_dfz">东风志</a></li>
+                            <li><a href="/sixia_song_20200117_o_mhjp">梦魂久抛</a></li>
+                            <li><a href="/sixia_song_20200110_c_grt">故人叹</a></li>
+                            <li><a href="/sixia_song_20200105_c_yyxz">烟雨行舟</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            2019Q4<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/sixia_song_20191229_c_symx">山有木兮</a></li>
+                            <li><a href="/sixia_song_20191221_c_blm">不老梦</a></li>
+                            <li><a href="/sixia_song_20191214_c_wj">无羁</a></li>
+                            <li><a href="/sixia_song_20191208_dfb">定风波</a></li>
+                            <li><a href="/sixia_song_20191129_c_qfl">起风了</a></li>
+                            <li><a href="/sixia_song_20191122_c_jwz">九万字</a></li>
+                            <li><a href="/sixia_song_20191117_c_mwgq">莫问归期</a></li>
+                        </ul>
+                    </li>
+<!--                    <li role="presentation" class="dropdown">-->
+<!--                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">-->
+<!--                            2019<span class="caret"></span>-->
+<!--                        </a>-->
+<!--                        <ul class="dropdown-menu">-->
+
+<!--                        </ul>-->
+<!--                    </li>-->
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            2012<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/sixia_song_20120914_c_qq">芊芊</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td style="width: auto"><div id="result" ></div></td>
+        </table>
+    </div>
+    <div class="panel-footer">
+        <table style="width: 100%">
+            <tr>
+                <td style="width: 50%;text-align: left">
+                    <span th:if="${not #strings.isEmpty(articleVO.preSectionUrl)}">
+                         <a th:href="${articleVO.preSectionUrl}">上一篇</a>
+                    </span>
+                </td>
+                <td style="width: 50%;text-align: right">
+                     <span th:if="${not #strings.isEmpty(articleVO.nextSectionUrl)}">
+                    <a th:href="${articleVO.nextSectionUrl}">下一篇</a>
+                     </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+<div th:include="common::common_footer"></div>
+
+<script th:inline="javascript">
+    $(document).ready( convert() );
+    function convert(){
+        // console.log("convert")
+        htmlobj=$.ajax({url:[[${articleVO.sourceFile}]],async:false});
+        // console.log( htmlobj.responseText);
+        converter = new showdown.Converter({tables: true});
+        // converter.setOption('tables', true);
+        html = converter.makeHtml(htmlobj.responseText);
+        //给表格添加样式
+        html = html.replace(/<table>/g,"<table class='table table-striped'>" )
+        //  html = html.replace("<table>","<table class='table table-striped'>" )
+        //   console.log( html);
+        document.getElementById("result").innerHTML = html;
+    }
+</script>
+
+</div>
+</body>
+</html>

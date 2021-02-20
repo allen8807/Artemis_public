@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common::parse_markdown_header(${articleVO.title})"></head>
+<!--<body  background="image/nanke.jpg" style="background-size: cover;">-->
+<body  >
+<style>
+    #fix_div{
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+    }
+    img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
+<div th:include="common::shuyuanji_nav"></div>
+<div th:include="music::play_music(name=${articleVO.music})" id="fix_div"></div>
+<img th:src="@{${articleVO.bannerImage}}" width="100%"/>
+<div class="panel panel-primary" >
+<!--    <div class="panel-body"  style="background:  #f6f1f7">-->
+        <div class="panel-body"  style="background:url('image/shuyuanji/shuyuanji_back.jpg');background-size: contain">
+    <div id="result" ></div>
+    </div>
+    <div class="panel-footer">
+        <table style="width: 100%">
+            <tr>
+                <td style="width: 50%;text-align: left">
+                    <span th:if="${not #strings.isEmpty(articleVO.preSectionUrl)}">
+                         <a th:href="${articleVO.preSectionUrl}">上一节</a>
+                    </span>
+                </td>
+                <td style="width: 50%;text-align: right">
+                     <span th:if="${not #strings.isEmpty(articleVO.nextSectionUrl)}">
+                    <a th:href="${articleVO.nextSectionUrl}">下一节</a>
+                     </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+<div th:include="common::common_footer"></div>
+
+ <script th:inline="javascript">
+     $(document).ready( convert() );
+     function convert(){
+        // console.log("convert")
+        htmlobj=$.ajax({url:[[${articleVO.sourceFile}]],async:false});
+        // console.log( htmlobj.responseText);
+        converter = new showdown.Converter({tables: true});
+        // converter.setOption('tables', true);
+        html = converter.makeHtml(htmlobj.responseText);
+        //给表格添加样式
+        html = html.replace(/<table>/g,"<table class='table table-striped'>" )
+      //  html = html.replace("<table>","<table class='table table-striped'>" )
+      //   console.log( html);
+        document.getElementById("result").innerHTML = html;
+    }
+</script>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common::parse_markdown_header(${articleVO.title})"></head>
+<!--<body  background="image/nanke.jpg" style="background-size: cover;">-->
+<body  >
+<style>
+    #fix_div{
+        position: fixed;
+        bottom: 0px;
+        right: 0px;
+    }
+    img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+    @media screen and (max-width:600px){
+        .left_div{display:none;}
+    }
+</style>
+<div th:include="common::sixia_nav"></div>
+<!--<div th:include="music::play_music(name=${articleVO.music})" id="fix_div"></div>-->
+<!--<img th:src="@{${articleVO.bannerImage}}" width="100%">-->
+<div class="panel panel-primary" >
+    <div class="panel-heading"><h3>最司长夏</h3></div>
+    <!--    <div class="panel-body"  style="background:  #f6f1f7">-->
+    <div class="panel-body" style="background:url('image/shuyuanji/shuyuanji_back.jpg');background-size: contain">
+        <table style="width: 100%">
+            <td style="width: 10%;vertical-align: top" class="left_div">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation"><a href="/sixia_00">最司长夏</a></li>
+                    <li role="presentation"><a href="/sixia_shuyuanji_00">漱愿记</a></li>
+                    <li role="presentation"><a href="/sixia_01">大王自述三篇</a></li>
+                    <li role="presentation"><a href="/sixia_02">长夏闻浅歌</a></li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            杂感<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/sixia_zagan_01">无题/写给在探寻生命意义的道路上曾经或正在迷惘的人</a></li>
+                            <li><a href="/sixia_zagan_02">家与世界</a></li>
+                            <li><a href="/sixia_zagan_03">我们都是猫</a></li>
+                            <li><a href="/sixia_zagan_04">时间概念</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            笔记<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/sixia_note_01">关于中医，郭生白《生命本能系统论》读后感</a></li>
+                            <li><a href="/sixia_note_02">薛定谔《生命是什么》摘抄</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                            印迹<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/sixia_yingji_01">最近很好</a></li>
+                            <li><a href="/sixia_yingji_02">受TI的感染，决定开始把一些平时的想法写在某个空间里</a></li>
+                            <li><a href="/sixia_yingji_03">冒个泡……</a></li>
+                            <li><a href="/sixia_yingji_04">想把这段对话记下来。希望很多年后，我依然是这么想的。</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td style="width: auto"><div id="result" ></div></td>
+        </table>
+    </div>
+    <div class="panel-footer">
+        <table style="width: 100%">
+            <tr>
+                <td style="width: 50%;text-align: left">
+                    <span th:if="${not #strings.isEmpty(articleVO.preSectionUrl)}">
+                         <a th:href="${articleVO.preSectionUrl}">上一篇</a>
+                    </span>
+                </td>
+                <td style="width: 50%;text-align: right">
+                     <span th:if="${not #strings.isEmpty(articleVO.nextSectionUrl)}">
+                    <a th:href="${articleVO.nextSectionUrl}">下一篇</a>
+                     </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+<div th:include="common::common_footer"></div>
+
+<script th:inline="javascript">
+    $(document).ready( convert() );
+    function convert(){
+        // console.log("convert")
+        htmlobj=$.ajax({url:[[${articleVO.sourceFile}]],async:false});
+        // console.log( htmlobj.responseText);
+        converter = new showdown.Converter({tables: true});
+        // converter.setOption('tables', true);
+        html = converter.makeHtml(htmlobj.responseText);
+        //给表格添加样式
+        html = html.replace(/<table>/g,"<table class='table table-striped'>" )
+        //  html = html.replace("<table>","<table class='table table-striped'>" )
+        //   console.log( html);
+        document.getElementById("result").innerHTML = html;
+    }
+</script>
+
+</div>
+</body>
+</html>

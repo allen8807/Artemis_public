@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Markdown.js</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/showdown.min.js"></script>
+</head>
+
+<body>
+<div>
+    <div id="result"></div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready( convert() );
+     function convert(){
+        console.log("convert")
+        htmlobj=$.ajax({url:"/sixia/temp.md",async:false});
+        console.log( htmlobj.responseText);
+        converter = new showdown.Converter({tables: true});
+        html = converter.makeHtml(htmlobj.responseText);
+        document.getElementById("result").innerHTML = html;
+    }
+</script>
+</body>
+</html>

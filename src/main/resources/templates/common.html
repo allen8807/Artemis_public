@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="common_header(title)">
+    <title th:text="${title}"></title>
+
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<!--    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>-->
+<!--    <link href="https://cdn.bootcss.com/normalize/8.0.1/normalize.min.css" rel="stylesheet">-->
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!--    百度统计-->
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?03ce9891ba8471bc148104cb4b553c2d";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<head th:fragment="parse_markdown_header(title)">
+    <title th:text="${title}"></title>
+
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<!--    解析markdown需要-->
+    <script type="text/javascript" src="js/showdown.min.js"></script>
+<!--    <script type="text/javascript" src="js/showdown-table.min.js"></script>-->
+
+    <!--    百度统计-->
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?03ce9891ba8471bc148104cb4b553c2d";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</head>
+
+<body>
+<div th:fragment="common_nav">
+    <!--  occupied_place用于占位,防止在各种情况下，body内容被遮挡-->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation"  >
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="">导航一</a></li>
+                <li><a href="/tools">返回工具列表</a></li>
+                <li><a href="/">返回首页</a></li>
+                <li><a href="#">导航四</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="">导航一</a></li>
+                <li><a href="/tools">返回工具列表</a></li>
+                <li><a href="/">返回首页</a></li>
+                <li><a href="#">导航四</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div th:fragment="tool_nav">
+    <!--  occupied_place用于占位,防止在各种情况下，body内容被遮挡-->
+    <nav class="navbar-default navbar-static-top" role="navigation"  style="opacity: 0" >
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="/">返回首页</a></li>
+                <li><a href="/tools">返回工具列表</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar-default navbar-fixed-top" role="navigation" >
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="/">返回首页</a></li>
+                <li><a href="/tools">返回工具列表</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="backhome_nav">
+    <!--  occupied_place用于占位,防止在各种情况下，body内容被遮挡-->
+    <nav class="navbar-default navbar-static-top" role="navigation"  style="opacity: 0" >
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="/">返回首页</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar-default navbar-fixed-top" role="navigation" >
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="/">返回首页</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="sixia_nav" style="margin: 0px">
+    <!--  occupied_place用于占位,防止在各种情况下，body内容被遮挡-->
+    <nav class="navbar-default navbar-static-top" role="navigation"  style="opacity: 0">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <!--                <li><a href="/tools">返回司夏空间</a></li>-->
+                <li><a href="/">返回首页</a></li>
+                <li><a href="/sixia_00">最司长夏</a></li>
+                <li><a href="/sixia_shuyuanji_00">漱愿记</a></li>
+                <li><a href="/sixia_song_00_content">长夏闻浅歌</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <!--                <li><a href="/tools">返回司夏空间</a></li>-->
+                <li><a href="/">返回首页</a></li>
+                <li><a href="/sixia_00">最司长夏</a></li>
+                <li><a href="/sixia_shuyuanji_00">漱愿记</a></li>
+                <li><a href="/sixia_song_00_content">长夏闻浅歌</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<!--漱愿记导航栏-->
+<div th:fragment="shuyuanji_nav" style="margin: 0px" >
+    <!--  occupied_place用于占位,防止在各种情况下，body内容被遮挡-->
+    <nav class="navbar-default navbar-static-top" role="navigation"  style="opacity: 0">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+<!--                <li><a href="/tools">返回司夏空间</a></li>-->
+                <li><a href="/">返回首页</a></li>
+                <li><a href="/sixia_00">最司长夏</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">漱愿记<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/sixia_shuyuanji_00">漱愿记</a></li>
+                        <li><a href="/sixia_shuyuanji_01">犹记年华 壹-贰</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+<!--                <li><a href="/tools">返回司夏空间</a></li>-->
+                <li><a href="/">返回首页</a></li>
+                <li><a href="/sixia_00">最司长夏</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">漱愿记<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/sixia_shuyuanji_00">漱愿记</a></li>
+                        <li><a href="/sixia_shuyuanji_01_01">犹记年华 壹-贰</a> </li>
+                        <li><a href="/sixia_shuyuanji_01_02">犹记年华 叁-肆</a></li>
+                        <li><a href="/sixia_shuyuanji_01_03">犹记年华 伍</a></li>
+                        <li><a href="/sixia_shuyuanji_01_04">犹记年华 陆-柒</a></li>
+                        <li><a href="/sixia_shuyuanji_01_05">犹记年华 尾声</a></li>
+                        <li role="separator" class="divider">
+                        <li><a href="/sixia_shuyuanji_02_01">弈中夜光 壹-肆</a></li>
+                        <li><a href="/sixia_shuyuanji_02_02">弈中夜光 伍-捌</a></li>
+                        <li><a href="/sixia_shuyuanji_02_03">弈中夜光 尾声</a></li>
+                        <li role="separator" class="divider">
+                        <li><a href="/sixia_shuyuanji_03_01">惟留风月 壹</a></li>
+                        <li><a href="/sixia_shuyuanji_03_02">惟留风月 贰-陆</a></li>
+                        <li><a href="/sixia_shuyuanji_03_03">惟留风月 柒-拾</a></li>
+                        <li><a href="/sixia_shuyuanji_03_04">惟留风月 拾壹-拾贰</a></li>
+                        <li><a href="/sixia_shuyuanji_03_05">惟留风月 尾声</a></li>
+                        <li role="separator" class="divider">
+                        <li><a href="/sixia_shuyuanji_04_01">掌中烛火 壹</a></li>
+
+<!--                        <li><a href="#">Something else here</a></li>-->
+<!--                        <li role="separator" class="divider"></li>-->
+<!--                        <li><a href="#">Separated link</a></li>-->
+<!--                        <li role="separator" class="divider"></li>-->
+<!--                        <li><a href="#">One more separated link</a></li>-->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="reading_nav" style="margin: 0px">
+    <!--  occupied_place用于占位,防止在各种情况下，body内容被遮挡-->
+    <nav class="navbar-default navbar-static-top" role="navigation"  style="opacity: 0">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <!--                <li><a href="/tools">返回司夏空间</a></li>-->
+                <li><a href="/">返回首页</a></li>
+                <li><a href="/reading_00">返回目录页</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <!--                <li><a href="/tools">返回司夏空间</a></li>-->
+                <li><a href="/">返回首页</a></li>
+                <li><a href="/reading_00">返回目录页</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="favo_nav" style="margin: 0px">
+    <!--  occupied_place用于占位,防止在各种情况下，body内容被遮挡-->
+    <nav class="navbar-default navbar-static-top" role="navigation"  style="opacity: 0">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <!--                <li><a href="/tools">返回司夏空间</a></li>-->
+                <li><a href="/">返回首页</a></li>
+                <li><a href="/favorite_00">返回目录页</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <!--                <li><a href="/tools">返回司夏空间</a></li>-->
+                <li><a href="/">返回首页</a></li>
+                <li><a href="/favorite_00">返回目录页</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="writing_nav" style="margin: 0px">
+    <!--  occupied_place用于占位,防止在各种情况下，body内容被遮挡-->
+    <nav class="navbar-default navbar-static-top" role="navigation"  style="opacity: 0">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <!--                <li><a href="/tools">返回司夏空间</a></li>-->
+                <li><a href="/">返回首页</a></li>
+                <li><a href="/writing_00">返回目录页</a></li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <!--                <li><a href="/tools">返回司夏空间</a></li>-->
+                <li><a href="/">返回首页</a></li>
+                <li><a href="/writing_00">返回目录页</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<footer  th:fragment="common_footer">
+    <div class="footer" style="text-align: center">
+        <p>©2019-2020 by 飞鸿无月.All rights reserved</p>
+        <p>版权所有，转载请注明出处</p>
+        <p>Email:<a href='mailto:EGRET8807@163.COM' target='_blank'>EGRET8807@163.COM</a></p>
+        <p>新浪微博:<a href="https://weibo.com/u/1302512932" >@飞鸿无月</a></p>
+        <p>GitHub:<a href="https://github.com/allen8807" >飞鸿无月</a></p>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</footer>
+</body>
+</html>

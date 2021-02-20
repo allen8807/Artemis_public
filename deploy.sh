@@ -1,0 +1,1 @@
+cp target/artemis-0.0.1-SNAPSHOT.war ../apache-tomcat-8.5.47/webapps/ROOT.war

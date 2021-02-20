@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common::common_header('朝花夕拾')"></head>
+<body>
+<div th:include="common::backhome_nav"></div>
+<div class="panel panel-primary">
+    <div class="panel-heading"><h3>朝花夕拾</h3></div>
+    <div class="panel-body">
+        <table  class="table table-striped">
+            <thead>
+            <tr>
+                <th style="width: 20%;"> 名称 </th>
+                <th> 说明 </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>  <h4><a href="http://www.unlimitedbladeworks.cc/constellation/">星座</a> </h4> </td>
+                <td>
+                    大二寒假时(2008-2009年)的旧作
+                    <br/>
+                    一个关于星座介绍的网站，当年网页制作还流行 Macromedia 的网页三剑客套装（由Dreamweaver，Fireworks，Flash三个软件组成），所以算是保留个历史纪念吧。
+                    <br/>
+                    当年的版本只对IE内核支持的比较好，（毕竟Chrome 2008年才诞生），真是很有历史感了。
+                    <br/>
+                    网站做了些兼容性调整，有背景音乐，注意调整音量
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<footer th:replace="common::common_footer"></footer>
+</body>
+</html>

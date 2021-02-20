@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Check Id Card Num</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?03ce9891ba8471bc148104cb4b553c2d";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</head>
+<body>
+    <p><a href="/templates/tools.html">返回工具列表</a></p>
+    <p><a href="https://www.jianshu.com/p/ead5b08e9839">参考/reference:身份证号码的编码规则及校验</a></p>
+    <h1>Check Id Card Num</h1>
+    <h1>检查身份证号的合规性</h1>
+    <form action="#" th:action="@{/check_id_card}" th:object="${idc}" method="post">
+        <p>districtSix <input type="text" th:field="*{districtSix}" /></p>
+        <p>birthdayEight <input type="text" th:field="*{birthdayEight}" /></p>
+        <p>lastFour <input type="text" th:field="*{lastFour}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>
